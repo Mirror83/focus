@@ -12,7 +12,7 @@ import androidx.compose.ui.window.*
 @Preview
 fun App(trayState: TrayState) {
     MaterialTheme {
-        Clock(trayState)
+        ClockDesktop(trayState)
     }
 }
 
