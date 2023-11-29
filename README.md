@@ -32,3 +32,6 @@ does not involve me writing a notification system myself.
 
 N/B: At the time stated above, the time is counting up for one minute for testing purposes.
 
+
+### Update: 29/11/2023
+Decided to make it a Compose Multiplatform project for Android and Desktop. 
