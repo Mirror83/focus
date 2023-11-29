@@ -3,18 +3,17 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import kotlinx.coroutines.delay
 
-class Timer(minutes: Int = 1) {
-    private val totalSeconds = minutes * 60
-    private var elapsedSeconds by mutableStateOf(0)
+class Timer(durationInMinutes: Int = 1) {
+    private val durationInSeconds = durationInMinutes * 60
+    private var remainingSeconds by mutableStateOf(durationInSeconds)
 
     private var started by mutableStateOf(false)
     private var paused by mutableStateOf(false)
 
     suspend fun tick() {
-        while (elapsedSeconds < totalSeconds) {
+        while (remainingSeconds > 0) {
             delay(1_000)
-            elapsedSeconds += 1
-            println(elapsedSeconds)
+            remainingSeconds -= 1
         }
     }
 
@@ -32,7 +31,7 @@ class Timer(minutes: Int = 1) {
     fun reset() {
         started = false
         paused = true
-        elapsedSeconds = 0
+        remainingSeconds = durationInSeconds
     }
 
     fun stop() {
@@ -41,14 +40,14 @@ class Timer(minutes: Int = 1) {
     }
 
     fun start() {
-        elapsedSeconds = 0
+        remainingSeconds = durationInSeconds
         started = true
         paused = false
     }
 
     fun output(): String {
-        val minutes = elapsedSeconds / 60
-        val remainingSeconds = elapsedSeconds % 60
+        val minutes = remainingSeconds / 60
+        val remainingSeconds = remainingSeconds % 60
         return "${formatTime(minutes)}:${formatTime(remainingSeconds)}"
     }
 
