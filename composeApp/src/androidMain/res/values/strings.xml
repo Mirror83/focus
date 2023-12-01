@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Focus</string>
+    <string name="timer_channel_name">Timer Notifications</string>
+    <string name="timer_channel_description">
+        Shows notifications in response to operations on the timer
+    </string>
 </resources>
