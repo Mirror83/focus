@@ -13,7 +13,7 @@ reinforce my knowledge of Jetpack Compose and learn how to apply it in the unfam
 
 The project is **in the early stages of planning and design**.
 
-Currently, the project is basically a playground for messing
+Currently, the project is basically a playground for mzessing
 around with coroutines and Compose for Desktop.
 
 ### Update: 26/11/2023
@@ -23,7 +23,7 @@ Tried to add notifications, for when the timer is done and I got a very dated no
 
 This result is making me reconsider using Compose Desktop for this app as notifications
 contribute a lot to the user experience. For Mac, as shown in
-the [Compose Desktop docs](https://github.com/JetBrains/compose-multiplatform/blob/master/tutorials/Tray_Notifications_MenuBar_new/README.md)
+the [Compose for Desktop docs](https://github.com/JetBrains/compose-multiplatform/blob/master/tutorials/Tray_Notifications_MenuBar_new/README.md)
 on notifications, the results are quite OK. However, notifications on Windows are also dated as per 
 [this article](https://www.composables.com/tutorials/compose-desktop).
 
@@ -35,3 +35,7 @@ N/B: At the time stated above, the time is counting up for one minute for testin
 
 ### Update: 29/11/2023
 Decided to make it a Compose Multiplatform project for Android and Desktop. 
+
+### Update: 2/11/2023
+Added basic notifications to the Android app. These will used to show the user that a Pomodoro has
+begun or ended, among other TBD use cases.
