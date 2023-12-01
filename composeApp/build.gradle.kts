@@ -77,6 +77,15 @@ android {
     dependencies {
         debugImplementation(libs.compose.ui.tooling)
     }
+
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+dependencies {
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.material)
 }
 
 compose.desktop {
