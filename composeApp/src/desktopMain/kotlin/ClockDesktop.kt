@@ -13,14 +13,13 @@ fun ClockDesktop(trayState: TrayState) {
         rememberNotification("Focus", "Pomodoro ended")
 
     val timer = remember {
-        Timer()
+        PomodoroTimer(workMinutes = 1, breakMinutes = 1, longBreakMinutes = 2)
     }
 
 
-    if (!timer.isPaused() && timer.isStarted()) {
+    if (timer.isRunning) {
         LaunchedEffect(timer) {
             timer.tick()
-            timer.stop()
             println("Send notification")
 
             trayState.sendNotification(pomodoroDoneNotification)
