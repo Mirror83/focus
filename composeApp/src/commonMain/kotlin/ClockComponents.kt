@@ -67,14 +67,16 @@ fun ClockComponents(timer: PomodoroTimer) {
                 modifier = Modifier
                     .fillMaxWidth()
             ) {
-                OutlinedButton(onClick = {
-                    if (timer.isStarted()) {
-                        timer.reset()
-                    } else {
-                        timer.start()
+                AnimatedVisibility(!timer.isRunning) {
+                    OutlinedButton(onClick = {
+                        if (timer.isStarted()) {
+                            timer.reset()
+                        } else {
+                            timer.start()
+                        }
+                    }) {
+                        Text(if (timer.isStarted()) "Reset" else "Start")
                     }
-                }) {
-                    Text(if (timer.isRunning || timer.isStarted()) "Reset" else "Start")
                 }
 
                 Spacer(modifier = Modifier.width(8.dp))
