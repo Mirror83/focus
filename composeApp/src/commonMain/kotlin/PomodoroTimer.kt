@@ -19,7 +19,7 @@ class PomodoroTimer(workMinutes: Int = 25, breakMinutes: Int = 5, longBreakMinut
 
     suspend fun tick() {
         when (pomodoroState) {
-            PomodoroState.WORK, PomodoroState.BREAK, PomodoroState.LONG_BREAK -> {
+            PomodoroState.WORK, PomodoroState.SHORT_BREAK, PomodoroState.LONG_BREAK -> {
                 while (remainingSeconds > 0) {
                     if (isPaused()) return
 
@@ -62,22 +62,23 @@ class PomodoroTimer(workMinutes: Int = 25, breakMinutes: Int = 5, longBreakMinut
     }
 
 
-
     /** Called after the timer finishes ticking **/
     private fun updateState() {
         isRunning = false
 
         if (
-            pomodoroState == PomodoroState.BREAK ||
+            pomodoroState == PomodoroState.SHORT_BREAK ||
             pomodoroState == PomodoroState.LONG_BREAK
         ) {
             pomodoroState = PomodoroState.WORK
             remainingSeconds = workSeconds
+
+            if (pomodoroState == PomodoroState.LONG_BREAK) completedSessions = 0
         } else if (pomodoroState == PomodoroState.WORK) {
             completedSessions += 1
-            completedSessions = (completedSessions % 5)
+
             if (completedSessions % 4 != 0) {
-                pomodoroState = PomodoroState.BREAK
+                pomodoroState = PomodoroState.SHORT_BREAK
                 remainingSeconds = breakSeconds
             } else {
                 pomodoroState = PomodoroState.LONG_BREAK
@@ -103,6 +104,6 @@ class PomodoroTimer(workMinutes: Int = 25, breakMinutes: Int = 5, longBreakMinut
 enum class PomodoroState {
     START,
     WORK,
-    BREAK,
+    SHORT_BREAK,
     LONG_BREAK
 }
