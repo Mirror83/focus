@@ -35,19 +35,32 @@ class PomodoroTimer(workMinutes: Int = 25, breakMinutes: Int = 5, longBreakMinut
 
     }
 
-    fun pause() {
-        isRunning = false
+    fun isStarted() = pomodoroState != PomodoroState.START
+
+    fun isPaused() = !isRunning
+
+    fun hasBreakStarted(): Boolean {
+        return when(pomodoroState) {
+            PomodoroState.SHORT_BREAK -> remainingSeconds < breakSeconds
+            PomodoroState.LONG_BREAK -> remainingSeconds < longBreakSeconds
+            else -> false
+        }
     }
 
-    fun isPaused(): Boolean {
-        return !isRunning
+//    fun hasWorkStarted() = pomodoroState == PomodoroState.WORK && remainingSeconds < workSeconds
+
+    fun isOnBreak() =
+        pomodoroState == PomodoroState.SHORT_BREAK || pomodoroState == PomodoroState.LONG_BREAK
+
+    fun isOnLongBreak() = pomodoroState == PomodoroState.LONG_BREAK
+
+    fun pause() {
+        isRunning = false
     }
 
     fun resume() {
         isRunning = true
     }
-
-    fun isStarted() = pomodoroState != PomodoroState.START
 
     fun start() {
         pomodoroState = PomodoroState.WORK
