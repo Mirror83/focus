@@ -11,11 +11,11 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.app.focus.R
 
-val TIMER_NOTIFICATION_ID = 1
-val CHANNEL_ID = "Timer"
+const val TIMER_NOTIFICATION_ID = 1
+const val CHANNEL_ID = "Timer"
 
 fun makeTimerNotification(title: String, content: String, context: Context) {
-    var builder = NotificationCompat.Builder(context, CHANNEL_ID)
+    val builder = NotificationCompat.Builder(context, CHANNEL_ID)
         .setSmallIcon(R.mipmap.ic_launcher)
         .setContentTitle(title)
         .setContentText(content)
