@@ -1,6 +1,6 @@
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateColorAsState
-import androidx.compose.desktop.ui.tooling.preview.Preview
+//import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -39,11 +39,12 @@ fun ClockComponents(timer: PomodoroTimer) {
                         if ((currentCircle - timer.completedSessions) > 0)
                             incompleteColor else completeColor,
                         10.dp.toPx(),
-                        center = Offset(center.x + it * 30, center.y)
+                        center = Offset(center.x + it * 30.dp.toPx(), center.y)
                     )
                 })
             }
         }
+
 
         Column(
             verticalArrangement = Arrangement.Center,
@@ -51,14 +52,27 @@ fun ClockComponents(timer: PomodoroTimer) {
         ) {
             Row(
                 horizontalArrangement = Arrangement.Center,
+                modifier = Modifier.fillMaxWidth()) {
+                Text(
+                    text =
+                    if (timer.isOnBreak()) {
+                        if (timer.isOnLongBreak()) "Long Break" else "Short Break"
+                    } else "Work",
+                    style = MaterialTheme.typography.h6
+
+                )
+            }
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            Row(
+                horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
                     .fillMaxWidth()
             ) {
-                Text(timer.output(), style = MaterialTheme.typography.h2)
+                Text(timer.output(), style = MaterialTheme.typography.h1)
             }
-
-            Spacer(modifier = Modifier.height(8.dp))
 
             Spacer(modifier = Modifier.height(8.dp))
 
@@ -87,7 +101,13 @@ fun ClockComponents(timer: PomodoroTimer) {
                             timer.pause()
                         else timer.resume()
                     }) {
-                        Text(if (timer.isPaused()) "Resume" else "Pause")
+                        Text(
+                            text = if (timer.isPaused()) {
+                                if (timer.isOnBreak()) {
+                                    if (timer.hasBreakStarted()) "Resume break" else "Start break"
+                                } else "Continue working"
+                            } else "Pause"
+                        )
                     }
                 }
 
@@ -96,8 +116,8 @@ fun ClockComponents(timer: PomodoroTimer) {
     }
 }
 
-@Preview
-@Composable
-fun ClockComponentsPreview() {
-    ClockComponents(timer = PomodoroTimer())
-}
+//@Preview
+//@Composable
+//fun ClockComponentsPreview() {
+//    ClockComponents(timer = PomodoroTimer())
+//}
