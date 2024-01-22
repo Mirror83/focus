@@ -1,4 +1,6 @@
 enum class FocusScreen {
-    TIMER,
-    SETUP
+    Home,
+    Timer,
+    Statistics,
+    Settings,
 }
