@@ -16,7 +16,7 @@ class MainActivity : ComponentActivity() {
         createTimerNotificationChannel(this)
 
         setContent {
-            ClockAndroid()
+            FocusApp()
         }
     }
 
