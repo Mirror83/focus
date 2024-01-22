@@ -76,6 +76,7 @@ android {
     }
     dependencies {
         debugImplementation(libs.compose.ui.tooling)
+        implementation(libs.androidx.navigation.compose)
     }
 
     repositories {
