@@ -83,10 +83,9 @@ class PomodoroTimer(workMinutes: Int = 25, breakMinutes: Int = 5, longBreakMinut
             pomodoroState == PomodoroState.SHORT_BREAK ||
             pomodoroState == PomodoroState.LONG_BREAK
         ) {
+            if (pomodoroState == PomodoroState.LONG_BREAK) completedSessions = 0
             pomodoroState = PomodoroState.WORK
             remainingSeconds = workSeconds
-
-            if (pomodoroState == PomodoroState.LONG_BREAK) completedSessions = 0
         } else if (pomodoroState == PomodoroState.WORK) {
             completedSessions += 1
 
