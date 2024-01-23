@@ -1,3 +1,5 @@
+package routes
+
 enum class FocusScreen {
     Home,
     Timer,

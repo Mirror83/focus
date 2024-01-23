@@ -1,3 +1,5 @@
+package routes
+
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -8,13 +10,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 
 @Composable
-fun SettingsScreen(onNavigateBack: () -> Unit) {
+fun StatsScreen(onNavigateBack: () -> Unit) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
         modifier = Modifier.fillMaxSize()
     ) {
-        Text("Settings")
+        Text("Statistics")
         TextButton(onClick = { onNavigateBack() }) {
             Text("Back")
         }
