@@ -11,23 +11,22 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.Button
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.OutlinedButton
-import androidx.compose.material.Text
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Text
+import androidx.compose.material3.ElevatedButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 @Composable
 fun ClockComponents(timer: PomodoroTimer) {
-    val incompleteColor by animateColorAsState(Color.Gray)
-    val completeColor by animateColorAsState(MaterialTheme.colors.secondary)
+    val incompleteColor by animateColorAsState(MaterialTheme.colorScheme.secondary)
+    val completeColor by animateColorAsState(MaterialTheme.colorScheme.tertiary)
 
     Column {
         Row(modifier = Modifier.padding(32.dp)) {
@@ -58,7 +57,7 @@ fun ClockComponents(timer: PomodoroTimer) {
                     if (timer.isOnBreak()) {
                         if (timer.isOnLongBreak()) "Long Break" else "Short Break"
                     } else "Work",
-                    style = MaterialTheme.typography.h6
+                    style = MaterialTheme.typography.titleMedium
 
                 )
             }
@@ -71,7 +70,7 @@ fun ClockComponents(timer: PomodoroTimer) {
                 modifier = Modifier
                     .fillMaxWidth()
             ) {
-                Text(timer.output(), style = MaterialTheme.typography.h1)
+                Text(timer.output(), style = MaterialTheme.typography.displayLarge)
             }
 
             Spacer(modifier = Modifier.height(8.dp))
@@ -96,7 +95,7 @@ fun ClockComponents(timer: PomodoroTimer) {
                 Spacer(modifier = Modifier.width(8.dp))
 
                 AnimatedVisibility(timer.isStarted()) {
-                    Button(onClick = {
+                    ElevatedButton(onClick = {
                         if (!timer.isPaused())
                             timer.pause()
                         else timer.resume()
