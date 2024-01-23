@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.app.focus.notifications.createTimerNotificationChannel
+import com.app.focus.ui.theme.FocusTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,7 +17,9 @@ class MainActivity : ComponentActivity() {
         createTimerNotificationChannel(this)
 
         setContent {
-            FocusApp()
+            FocusTheme {
+                FocusApp()
+            }
         }
     }
 
