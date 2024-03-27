@@ -8,3 +8,6 @@ context of a desktop application.
 
 Although it was supposed to be desktop-only, I decided to use this project to also act as a refresher for Android development since it's been a while.
 (And also the notifications provided by ```trayState.sendNotification()``` on desktop looked pretty bad, which demotivated me since notifications are a key feature, and I did not want to implement my own notification system)
+
+## Status
+Freezed (not in active development, for the time being)
